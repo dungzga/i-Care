@@ -1,0 +1,27 @@
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 8px;
+}
+
+.emoticonText{
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.delightedBackground{
+    background-color: #FFCE2D;
+}
+
+.motivatedBackground{
+    background-color: #9747FF;
+}
+
+.irritatedBackground{
+    background-color: #2DCDFF;
+}
