@@ -1,4 +1,4 @@
-.wrapper{
+.wrapper {
     padding: 64px 0;
     display: flex;
     flex-direction: column;
@@ -7,14 +7,14 @@
     gap: 64px;
 }
 
-.emoticonWrapper{
+.emoticonWrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 24px;
 }
 
-.mainTitle{
+.mainTitle {
     color: #000000;
     font-weight: 700;
     font-size: 30px;

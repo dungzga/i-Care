@@ -1,0 +1,38 @@
+.gridBox{
+    display: grid;
+    width: 100%;
+    grid-template:
+      [header-left] "head head" 30px [header-right]
+      [main-left] "text  dropdown" 1fr [main-right]
+      / 250px 1fr;
+    column-gap: 8px;
+    margin-top: 16px;
+}
+
+.todoHeader{
+    background-color: rgba(168, 233, 254,0.6);
+    grid-area: head;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 16px;
+    font-size: 16px;
+    font-weight: 500;
+}
+  
+.text {
+    grid-area: text;
+    padding: 12px 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+.dropdown {
+    grid-area: dropdown;
+    padding: 12px 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }

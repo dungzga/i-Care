@@ -1,7 +1,7 @@
 "use client"
 
 import { FC, HTMLAttributes } from "react";
-import styles from "./Button.module.css";
+import styles from "./CommonButton.module.css";
 
 export interface ICommonButtonProps extends HTMLAttributes<HTMLButtonElement> {
   isDisabled?: boolean;

@@ -1,4 +1,4 @@
-.disabledButton{
+.disabledButton {
     width: 284px;
     padding: 8px 0;
     display: flex;
@@ -10,12 +10,12 @@
     border-color: #000000;
     border-radius: 15px;
     background-color: #FFFFFF;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     cursor: pointer;
     opacity: 0.3;
 }
 
-.commonButton{
+.commonButton {
     width: 284px;
     padding: 8px 0;
     display: flex;
@@ -28,9 +28,9 @@
     border-radius: 15px;
     background-color: #FFFFFF;
     cursor: pointer;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.commonButton:hover{
-    background-color:azure;
+.commonButton:hover {
+    background-color: azure;
 }

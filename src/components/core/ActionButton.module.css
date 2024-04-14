@@ -1,0 +1,29 @@
+.defaultButton {
+    width: 100%;
+    padding: 8px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000000;
+    font-weight: 500;
+    font-size: 12px;
+    border-radius: 15px;
+    background-color: #FFFFFF;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+}
+
+.purple {
+    color: #FFFFFF !important;
+    background-color: #9747FF !important;
+}
+
+.green {
+    color: #FFFFFF !important;
+    background-color: #6CB28E !important;
+}
+
+.yellow {
+    color: #000000 !important;
+    background-color: #FFCE2D !important;
+}
