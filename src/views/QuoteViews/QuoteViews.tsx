@@ -55,7 +55,7 @@ export const QuoteViews: FC = () => {
                 !isLoading && 
                 <div className={styles.wrapper}>
                     <span className={`${styles.fadeInBox} ${styles.fadein} ${styles.quote}`}>
-                        {quote}
+                    "{quote}"
                     </span>
                     <Stack position={"absolute"} bottom={"40px"}>
                         <Link href={`/i-care`}>

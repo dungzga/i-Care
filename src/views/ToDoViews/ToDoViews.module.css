@@ -1,11 +1,8 @@
 .gridBox{
     display: grid;
     width: 100%;
-    grid-template:
-      [header-left] "head head" 30px [header-right]
-      [main-left] "text  dropdown" 1fr [main-right]
-      / 250px 1fr;
-    column-gap: 8px;
+    grid-template: "head head" "text  dropdown" / 240px 90px;
+    column-gap: 16px;
     margin-top: 16px;
 }
 
@@ -35,4 +32,12 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-  }
+}
+
+.addButton{
+  text-align: center;
+}
+
+.removeButton{
+  align-self: flex-end
+}
