@@ -1,0 +1,123 @@
+.blueLoad {
+    width: calc(250px - 14px);
+    height: 120px;
+    border-radius: 50px;
+    background: 
+      radial-gradient(farthest-side,#0000 calc(100% - 15px),#ccc calc(100% - 14px) 99%,#0000) left,
+      radial-gradient(farthest-side,#0000 calc(100% - 15px),#ccc calc(100% - 14px) 99%,#0000) right;
+    background-size: 100%;
+    background-image: url("../../../../public/blue-infinity.svg");
+    background-repeat: no-repeat;
+    position: relative;
+    animation: w10-0 6s infinite linear;
+    margin: auto;
+}
+.blueLoad:before {
+  content: "";
+  position: absolute;
+  inset:0;
+  margin:auto; 
+  width:18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  transform-origin: -45px 50%;
+  box-shadow:
+  0 0 10px 5px #fff,  /* inner white */
+  0 0 30px 15px yellow; /* outer cyan */
+  animation: w10-1 3s infinite linear;
+}
+
+@keyframes w10-0 { 
+    0%,49.99% { transform:scaleX(1)}
+    50%,100% { transform:scaleX(-1)} 
+}
+
+@keyframes w10-1 { 
+    100% { transform:rotate(1turn)} 
+}
+
+.yellowLoad {
+    width: calc(250px - 14px);
+    height: 120px;
+    border-radius: 50px;
+    background: 
+      radial-gradient(farthest-side,#0000 calc(100% - 15px),#ccc calc(100% - 14px) 99%,#0000) left,
+      radial-gradient(farthest-side,#0000 calc(100% - 15px),#ccc calc(100% - 14px) 99%,#0000) right;
+    background-size: 100%;
+    background-image: url("../../../../public/yellow-infinity.svg");
+    background-repeat: no-repeat;
+    position: relative;
+    animation: w10-0 6s infinite linear;
+    margin: auto;
+}
+.yellowLoad:before {
+  content: "";
+  position: absolute;
+  inset:0;
+  margin:auto; 
+  width:18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  transform-origin: -45px 50%;
+  box-shadow:
+  0 0 10px 5px #fff,  /* inner white */
+  0 0 30px 15px yellow; /* outer cyan */
+  animation: w10-1 3s infinite linear;
+}
+
+@keyframes w10-0 { 
+    0%,49.99% { transform:scaleX(1)}
+    50%,100% { transform:scaleX(-1)} 
+}
+
+@keyframes w10-1 { 
+    100% { transform:rotate(1turn)} 
+}
+
+
+
+
+.greenLoad {
+    width: calc(250px - 14px);
+    height: 120px;
+    border-radius: 50px;
+    background: 
+      radial-gradient(farthest-side,#0000 calc(100% - 15px),#ccc calc(100% - 14px) 99%,#0000) left,
+      radial-gradient(farthest-side,#0000 calc(100% - 15px),#ccc calc(100% - 14px) 99%,#0000) right;
+    background-size: 100%;
+    background-image: url("../../../../public/green-infinity.svg");
+    background-repeat: no-repeat;
+    position: relative;
+    animation: w10-0 6s infinite linear;
+    margin: auto;
+}
+.greenLoad:before {
+  content: "";
+  position: absolute;
+  inset:0;
+  margin:auto; 
+  width:18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  transform-origin: -45px 50%;
+  box-shadow:
+  0 0 10px 5px #fff,  /* inner white */
+  0 0 30px 15px yellow; /* outer cyan */
+  animation: w10-1 3s infinite linear;
+}
+
+@keyframes w10-0 { 
+    0%,49.99% { transform:scaleX(1)}
+    50%,100% { transform:scaleX(-1)} 
+}
+
+@keyframes w10-1 { 
+    100% { transform:rotate(1turn)} 
+}
+
+
+
+
