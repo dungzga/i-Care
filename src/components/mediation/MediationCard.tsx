@@ -19,9 +19,9 @@ export const MediationCard: FC<TMediationCardInterface> = (props) => {
 
     var cardBackgroundColor: string = "";
     if (cardType == "focus") {
-        cardBackgroundColor = "#FFCE2D"
-    } else if (cardType == "dailythought") {
         cardBackgroundColor = "#9747FF"
+    } else if (cardType == "dailythought") {
+        cardBackgroundColor = "#FFCE2D"
     } else if (cardType == "relaxation") { 
         cardBackgroundColor = "#6CB28E"
     } else {
