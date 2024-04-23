@@ -1,6 +1,6 @@
 "use client"
 
-import { FC, useEffect, useState } from "react"
+import { FC, useEffect, useRef, useState } from "react"
 import { Box, Link, Stack, Typography, styled } from "@mui/material"
 import { LayoutViews } from "../../LayoutViews/LayoutViews"
 import { ActionButton } from "@/components/core/ActionButton"
@@ -9,6 +9,8 @@ import { MediationCard } from "@/components/mediation/MediationCard"
 import styles from "./MediationStartView.module.css";
 import { useSearchParams } from "next/navigation"
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
+import ReactAudioPlayer from 'react-audio-player';
+import { CommonButton } from "@/components/core/CommonButton"
 
 export const MediationStartViews: FC = () => {
     const searchParams = useSearchParams();
@@ -19,29 +21,28 @@ export const MediationStartViews: FC = () => {
 
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [timer, setTimer] = useState<number>(0)
+    const [musicSrc, setMusicSrc] = useState<string>("");
+    const audioRef = useRef<any>();
+    const [isPlaying, setIsPlaying] = useState<boolean>(false)
+
+    const onStart = () => {
+        audioRef && audioRef.current.play();
+        setIsPlaying(true);
+    }
 
     useEffect(() => {
-        isFocus && setTimer(300)
-        isDailyThought && setTimer(300)
-        isRelaxation && setTimer(600)
         const timeoutId = setTimeout(() => {
             setIsLoading(false);
         }, 6000);
-
         // Cleanup function to clear the timeout if the component unmounts
         return () => clearTimeout(timeoutId);
     }, [])
 
     useEffect(() => {
-        let timer = setInterval(() => {
-            setTimer((time) => {
-                if (time === 0) {
-                    clearInterval(timer);
-                    return 0;
-                } else return time - 1;
-            });
-        }, 1000);
-    }, [isLoading])
+        isFocus && setMusicSrc("/music/focus.mp3");
+        isDailyThought && setMusicSrc("/music/dailythought.mp3");
+        isRelaxation && setMusicSrc("/music/relaxation.mp3");
+    },[isFocus, isDailyThought, isRelaxation])
 
     return (
 
@@ -63,53 +64,129 @@ export const MediationStartViews: FC = () => {
             }
             {
                 !isLoading && isFocus &&
-                <CountdownCircleTimer
-                    isPlaying
-                    duration={300}
-                    colors={['#004777', '#F7B801', '#A30000', '#A30000']}
-                    colorsTime={[7, 5, 2, 0]}
-                    isSmoothColorTransition
-                >
-                    {({ remainingTime }) => remainingTime}
-                </CountdownCircleTimer>
+                <div className={`${styles.fadeInBox} ${styles.fadein} ${styles.focusMediation}`}>
+                    <Typography fontSize={"35px"} color={"#FFFFFF"} textAlign={"center"}>
+                        FOCUS ATTENTION
+                    </Typography>
+                    <CountdownCircleTimer
+                        isPlaying={isPlaying}
+                        duration={300}
+                        colors={['#F9DD7F', '#FFFFFF']}
+                        colorsTime={[20, 0]}
+                        isSmoothColorTransition
+                        trailColor="#8E97FD"
+                    >
+                        {({ remainingTime }) => {
+                            const minutes = Math.floor(remainingTime / 60).toString().padStart(2, '0')
+                            const seconds = (remainingTime % 60).toString().padStart(2, '0')
+
+                            return (
+                                <div className={styles.countDownWatch}>
+                                    {minutes}:{seconds}
+                                </div>
+                            )
+                        }}
+                    </CountdownCircleTimer>
+                    <CommonButton
+                    onClick={onStart}
+                    isDisabled={isPlaying}
+                    style={{backgroundColor : "#F9DD7F", marginTop: "16px", fontWeight: "500"}}>
+                        Let's begin
+                    </CommonButton>
+                </div>
 
             }
             {
                 !isLoading && isDailyThought &&
-                <div className={`${styles.fadeInBox} ${styles.fadein} ${styles.dailyThoughtMediation}`}>
+                <div className={`${styles.fadeInBox} ${styles.fadein} ${styles.dailythoughtMediation}`}>
+                    <Typography fontSize={"35px"} color={"#FFFFFF"} textAlign={"center"}>
+                        IT’S ABOUT A <br />POSITIVE DAY
+                    </Typography>
                     <CountdownCircleTimer
-                        isPlaying
+                        isPlaying={isPlaying}
                         duration={300}
-                        colors={['#004777', '#F7B801', '#A30000', '#A30000']}
-                        colorsTime={[7, 5, 2, 0]}
+                        colors={['#75C59B', '#FFFFFF']}
+                        colorsTime={[20, 0]}
                         isSmoothColorTransition
-                    >
-                        {({ remainingTime }) => remainingTime}
-                    </CountdownCircleTimer>
+                        trailColor="#F9DD7F"
 
+                    >
+                        {({ remainingTime }) => {
+                            const minutes = Math.floor(remainingTime / 60).toString().padStart(2, '0')
+                            const seconds = (remainingTime % 60).toString().padStart(2, '0')
+
+                            return (
+                                <div className={styles.countDownWatch}>
+                                    {minutes}:{seconds}
+                                </div>
+                            )
+                        }}
+                    </CountdownCircleTimer>
+                    <CommonButton
+                    onClick={onStart}
+                    isDisabled={isPlaying}
+                    style={{backgroundColor : "#75C59B", marginTop: "16px", fontWeight: "500", color: "#FFFFFF"}}>
+                        Let's begin
+                    </CommonButton>
                 </div>
 
             }
             {
                 !isLoading && isRelaxation &&
                 <div className={`${styles.fadeInBox} ${styles.fadein} ${styles.relaxationMediation}`}>
+                    <Typography fontSize={"35px"} color={"#FFFFFF"} textAlign={"center"}>
+                        REST YOUR <br />PRECIOUS MIND <br />AND BODY
+                    </Typography>
+
                     <CountdownCircleTimer
-                        isPlaying
-                        duration={70}
-                        colors={['#004777', '#F7B801', '#A30000', '#A30000']}
-                        colorsTime={[25, 15, 8, 0]}
+                        isPlaying={isPlaying}
+                        duration={600}
+                        colors={['#F9DD7F', '#FFFFFF']}
+                        colorsTime={[20, 0]}
                         isSmoothColorTransition
+                        trailColor="#75C59B"
+
                     >
                         {({ remainingTime }) => {
-                            const minutes = Math.floor(remainingTime / 60)
-                            const seconds = remainingTime % 60
-                          
-                            return `${minutes}:${seconds}`
+                            const minutes = Math.floor(remainingTime / 60).toString().padStart(2, '0')
+                            const seconds = (remainingTime % 60).toString().padStart(2, '0')
+
+                            return (
+                                <div className={styles.countDownWatch}>
+                                    {minutes}:{seconds}
+                                </div>
+                            )
                         }}
                     </CountdownCircleTimer>
+                    <CommonButton
+                    onClick={onStart}
+                    isDisabled={isPlaying}
+                    style={{backgroundColor : "#F9DD7F", marginTop: "16px", fontWeight: "500"}}>
+                        Let's begin
+                    </CommonButton>
                 </div>
 
             }
+            <audio
+                src={musicSrc}
+                autoPlay
+                ref={audioRef}
+            />
+            <Stack position={"absolute"} right={"20px"} bottom={"20px"}>
+                <Link href="/mediation">
+                    <ActionButton customStyled={{ width: "fit-content", border: "1px solid #000000" }}>
+                        <div className={"buttonAlign"}>
+                            <Image
+                                width={20}
+                                height={16}
+                                src={"/left-arrow.png"}
+                                alt="left-arrow"
+                            />
+                            <span>Back</span>
+                        </div>
+                    </ActionButton>
+                </Link>
+            </Stack>
         </LayoutViews>
     )
 }

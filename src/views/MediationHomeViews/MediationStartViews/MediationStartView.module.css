@@ -129,4 +129,49 @@
   animation-timing-function: ease-in;
 }
 
+.countDownWatch{
+  font-size: 40px;
+  font-weight: 500;
+  width: 156px;
+  height: 156px;
+  background-color: #FFFFFF;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.relaxationMediation{
+  background-color: #75C59B;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin: -20px;
+}
+
+.dailythoughtMediation{
+  background-color: #F9DD7F;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin: -20px;
+}
+
+.focusMediation{
+  background-color: #8E97FD;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin: -20px;
+}
 

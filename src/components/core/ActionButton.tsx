@@ -10,7 +10,7 @@ export interface IActionButtonProps extends HTMLAttributes<HTMLButtonElement> {
 }
 
 export const ActionButton: FC<IActionButtonProps> = (props) => {
-  const { isDisabled = false, buttonColor, customStyled, children } = props;
+  const { isDisabled = false, buttonColor, customStyled, children, ...buttonProps } = props;
   var buttonStyle;
 
   if (buttonColor == "purple") {
@@ -28,6 +28,7 @@ export const ActionButton: FC<IActionButtonProps> = (props) => {
       style={customStyled}
       className={`${buttonStyle} ${styles.defaultButton}`}
       disabled={isDisabled}
+      {...buttonProps}
     >
       {children}
     </button>

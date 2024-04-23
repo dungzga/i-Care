@@ -71,10 +71,7 @@ export const ToDoViews: FC = () => {
         newTodoList.splice(index, 1);
         setTodoList(newTodoList);
     }
-
-    useEffect(() => {
-        console.log(todoList)
-    }, [todoList])
+    
     return (
 
         <LayoutViews>

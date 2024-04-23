@@ -8,12 +8,13 @@ export interface ICommonButtonProps extends HTMLAttributes<HTMLButtonElement> {
 }
 
 export const CommonButton: FC<ICommonButtonProps> = (props) => {
-  const { isDisabled = false, children } = props;
+  const { isDisabled = false, children, ...buttonProps } = props;
 
   return (
     <button
       className={isDisabled ? styles.disabledButton : styles.commonButton}
       disabled={isDisabled}
+      {...buttonProps}
     >
       {children}
     </button>

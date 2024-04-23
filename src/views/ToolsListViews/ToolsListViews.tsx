@@ -31,7 +31,7 @@ export const ToolsListViews: FC = () => {
                     Let’s start your day with<br /> some activities
                 </Typography>
 
-                <Stack flexDirection={"row"} gap={2} flexWrap={"wrap"} justifyContent={"space-between"} marginTop={"20px"}>
+                <Stack flexDirection={"row"} gap={2} flexWrap={"wrap"} marginTop={"20px"} alignSelf={"center"}>
                     <ToolsCard
                         cardText="To do list"
                         styleType="lowerText"
