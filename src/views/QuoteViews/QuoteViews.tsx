@@ -4,7 +4,7 @@ import { FC, useEffect, useState } from "react"
 import Image from "next/image";
 import styles from "./Quote.module.css"
 import { CommonButton } from "@/components/core/CommonButton";
-import { Box, CircularProgress, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { QuotesData } from "@/temp-db/quotes";
@@ -59,7 +59,7 @@ export const QuoteViews: FC = () => {
                     </span>
                     <Stack position={"absolute"} bottom={"40px"}>
                         <Link href={`/i-care`}>
-                            <CommonButton className={`${styles.fadeInBox} ${styles.fadein}`}>
+                            <CommonButton>
                                 <Stack gap={1} flexDirection={"row"} alignItems={"center"}>
                                     <span>Be presented</span>
                                     <Image
