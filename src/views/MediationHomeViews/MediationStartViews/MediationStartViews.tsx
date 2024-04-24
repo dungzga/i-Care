@@ -25,14 +25,16 @@ export const MediationStartViews: FC = () => {
     const audioRef = useRef<any>();
     const [isPlaying, setIsPlaying] = useState<boolean>(false)
 
-    const onStart = () => {
-        audioRef && audioRef.current.play();
-        setIsPlaying(true);
-    }
+    // const onStart = () => {
+    //     audioRef && audioRef.current.play();
+    //     setIsPlaying(true);
+    // }
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
             setIsLoading(false);
+            audioRef && audioRef.current.play();
+            setIsPlaying(true);
         }, 6000);
         // Cleanup function to clear the timeout if the component unmounts
         return () => clearTimeout(timeoutId);
@@ -87,12 +89,12 @@ export const MediationStartViews: FC = () => {
                             )
                         }}
                     </CountdownCircleTimer>
-                    <CommonButton
+                    {/* <CommonButton
                     onClick={onStart}
                     isDisabled={isPlaying}
                     style={{backgroundColor : "#F9DD7F", marginTop: "16px", fontWeight: "500"}}>
                         Let's begin
-                    </CommonButton>
+                    </CommonButton> */}
                 </div>
 
             }
@@ -122,12 +124,12 @@ export const MediationStartViews: FC = () => {
                             )
                         }}
                     </CountdownCircleTimer>
-                    <CommonButton
+                    {/* <CommonButton
                     onClick={onStart}
                     isDisabled={isPlaying}
                     style={{backgroundColor : "#75C59B", marginTop: "16px", fontWeight: "500", color: "#FFFFFF"}}>
                         Let's begin
-                    </CommonButton>
+                    </CommonButton> */}
                 </div>
 
             }
@@ -158,12 +160,12 @@ export const MediationStartViews: FC = () => {
                             )
                         }}
                     </CountdownCircleTimer>
-                    <CommonButton
+                    {/* <CommonButton
                     onClick={onStart}
                     isDisabled={isPlaying}
                     style={{backgroundColor : "#F9DD7F", marginTop: "16px", fontWeight: "500"}}>
                         Let's begin
-                    </CommonButton>
+                    </CommonButton> */}
                 </div>
 
             }
