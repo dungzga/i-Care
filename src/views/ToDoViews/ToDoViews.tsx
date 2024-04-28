@@ -14,28 +14,32 @@ import Link from "next/link";
 
 export interface TTodoList {
     content: string,
-    status: string
+    status: string,
+    savedDate: Date,
 }
 
 const defaultTodoList: TTodoList[] = [
     {
         content: "",
-        status: "done"
+        status: "done",
+        savedDate: new Date()
     },
     {
         content: "",
-        status: "inprogress"
+        status: "inprogress",
+        savedDate: new Date()
     },
     {
         content: "",
-        status: "todo"
+        status: "todo",
+        savedDate: new Date()
     }
 ]
 
 const BootstrapInput = styled(InputBase)(({ theme }) => {
     return {
         '& .MuiInputBase-input': {
-            width: "60px",
+            width: "100%",
             borderRadius: "10px",
             position: 'relative',
             border: '1px solid #ced4da',
@@ -59,21 +63,34 @@ export const ToDoViews: FC = () => {
     const addMoreTodoItem = () => {
         const newTodoItem: TTodoList = {
             content: "",
-            status: ""
+            status: "",
+            savedDate: new Date()
         }
         const newTodoList = [...todoList];
         newTodoList.push(newTodoItem);
         setTodoList(newTodoList);
+        localStorage.setItem("todayTodoList", JSON.stringify(newTodoList))
     }
 
     const removeTodoItem = (index: number) => {
         const newTodoList = [...todoList];
         newTodoList.splice(index, 1);
         setTodoList(newTodoList);
+        localStorage.setItem("todayTodoList", JSON.stringify(newTodoList))
     }
-    
-    return (
 
+    useEffect(() => {
+        const checkLocalStorageTodoListData = localStorage.getItem("todayTodoList");
+        if (!checkLocalStorageTodoListData) {
+            localStorage.setItem("todayTodoList", JSON.stringify(defaultTodoList))
+            setTodoList(defaultTodoList);
+        } else {
+            const todayTodoList: TTodoList[] = JSON.parse(localStorage.getItem("todayTodoList") || "");
+            setTodoList(todayTodoList)
+        }
+    }, [])
+
+    return (
         <LayoutViews>
             <Typography variant="h6" fontWeight={"700"} sx={{ marginTop: "40px" }}>
                 Something you have to<br />do today?
@@ -83,41 +100,8 @@ export const ToDoViews: FC = () => {
                     <span>Checklist</span>
                     <span>Status</span>
                 </div>
-
                 <div className={styles.text}>
-                    {todoList.map((todo, index) => {
-                        return (
-                            <>
-
-                                <TextField
-                                    sx={{
-                                        borderRadius: "10px",
-                                        width: "100%",
-                                    }}
-                                    key={index}
-                                    value={todo.content}
-                                    InputProps={{ sx: { borderRadius: "10px", padding: "8px" } }}
-                                    size="small"
-                                    variant="filled"
-                                    multiline
-                                    placeholder="Add new task" />
-                                {index > 2 &&
-                                    <Image
-                                        width={16}
-                                        height={16}
-                                        alt="remove button"
-                                        src="/remove_button.png"
-                                        onClick={() => removeTodoItem(index)}
-                                        className={styles.removeButton}
-                                    />
-                                }
-                            </>
-                        )
-                    })}
-
-                </div>
-                <div className={styles.dropdown}>
-                    {todoList.map((todo, index) => {
+                    {todoList && todoList.length > 0 && todoList.map((todo, index) => {
                         var optionBackgroundColor: string = "";
                         var textColor: string = "";
                         if (todo.status == "done") {
@@ -126,7 +110,7 @@ export const ToDoViews: FC = () => {
                         } else if (todo.status == "inprogress") {
                             optionBackgroundColor = "#9747FF"
                             textColor = "#FFFFFF"
-                        } else if (todo.status == "todo") { 
+                        } else if (todo.status == "todo") {
                             optionBackgroundColor = "#6CB28E"
                             textColor = "#FFFFFF"
                         } else {
@@ -134,33 +118,68 @@ export const ToDoViews: FC = () => {
                             textColor = "#000000"
                         }
                         return (
-                            <>
-                                <Select
-                                    key={index}
-                                    input={<BootstrapInput style={{ backgroundColor: optionBackgroundColor, borderRadius: "10px", color: textColor }} />}
-                                    value={todo.status}
-                                    onChange={(e: SelectChangeEvent) => {
-                                        const newTodoList = [...todoList];
-                                        newTodoList[index].status = e.target.value;
-                                        setTodoList(newTodoList);
-                                    }}
-                                >
-                                    <MenuItem value="">
-                                        <em>None</em>
-                                    </MenuItem>
-                                    <MenuItem value={"done"}>Done</MenuItem>
-                                    <MenuItem value={"inprogress"}>IP</MenuItem>
-                                    <MenuItem value={"todo"}>To Do</MenuItem>
-                                </Select>
-                                {index > 2 &&
-                                    <div style={{ height: "16px" }}></div>
-                                }
-                            </>
+                            <div className={styles.todoWrapper} key={index}>
+                                <div className={styles.text}>
+                                    <TextField
+                                        sx={{
+                                            borderRadius: "10px",
+                                            width: "100%",
+                                        }}
+                                        value={todo.content}
+                                        InputProps={{ sx: { borderRadius: "10px", padding: "8px" } }}
+                                        size="small"
+                                        variant="filled"
+                                        multiline
+                                        placeholder="Add new task"
+                                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                                            const newTodoList = [...todoList];
+                                            newTodoList[index].content = e.target.value;
+                                            newTodoList[index].savedDate = new Date();
+                                            setTodoList(newTodoList);
+                                            localStorage.setItem("todayTodoList", JSON.stringify(newTodoList))
+                                        }} />
+                                        <Typography sx={{marginTop: "-8px"}} fontSize={"10px"} fontWeight={300}>
+                                            Edited Date: {todo.savedDate && new Date(todo.savedDate).toLocaleString()}
+                                        </Typography>
+                                    {index > 2 &&
+                                        <Image
+                                            width={16}
+                                            height={16}
+                                            alt="remove button"
+                                            src="/remove_button.png"
+                                            onClick={() => removeTodoItem(index)}
+                                            className={styles.removeButton}
+                                        />
+                                    }
+                                </div>
+                                <div className={styles.dropdown}>
+                                    <Select
+                                        input={<BootstrapInput style={{ backgroundColor: optionBackgroundColor, borderRadius: "10px", color: textColor }} />}
+                                        value={todo.status}
+                                        onChange={(e: SelectChangeEvent) => {
+                                            const newTodoList = [...todoList];
+                                            newTodoList[index].status = e.target.value;
+                                            newTodoList[index].savedDate = new Date();
+                                            setTodoList(newTodoList);
+                                            localStorage.setItem("todayTodoList", JSON.stringify(newTodoList))
+                                        }}
+                                    >
+                                        <MenuItem value="">
+                                            <em>None</em>
+                                        </MenuItem>
+                                        <MenuItem value={"done"}>Done</MenuItem>
+                                        <MenuItem value={"inprogress"}>IP</MenuItem>
+                                        <MenuItem value={"todo"}>To Do</MenuItem>
+                                    </Select>
+                                    {index > 2 &&
+                                        <div style={{ height: "24px" }}></div>
+                                    }
+                                </div>
+                            </div>
                         )
                     })}
 
                 </div>
-
                 <div className={styles.addButton}>
                     <Image
                         width={26}

@@ -1,43 +1,49 @@
-.gridBox{
-    display: grid;
-    width: 100%;
-    grid-template: "head head" "text  dropdown" / 240px 90px;
-    column-gap: 16px;
-    margin-top: 16px;
+.gridBox {
+  display: flex;
+  flex-direction: column;
+  gap: 12px
 }
 
-.todoHeader{
-    background-color: rgba(168, 233, 254,0.6);
-    grid-area: head;
-    border-radius: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 16px;
-    font-size: 16px;
-    font-weight: 500;
+.todoHeader {
+  background-color: rgba(168, 233, 254, 0.6);
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 16px;
 }
-  
+
+.todoWrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
 .text {
-    grid-area: text;
-    padding: 12px 0px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  
-.dropdown {
-    grid-area: dropdown;
-    padding: 12px 0px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+  display: flex;
+  flex-direction: column;
+  flex: 70%;
+  gap: 12px;
 }
 
-.addButton{
+.dropdown {
+  display: flex;
+  flex-direction: column;
+  justify-self: flex-end;
+  flex: 30%;
+  gap: 12px;
+}
+
+
+
+.addButton {
   text-align: center;
 }
 
-.removeButton{
-  align-self: flex-end
+.removeButton {
+  align-self: flex-end;
+  margin-top: -12px;
 }

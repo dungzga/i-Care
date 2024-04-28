@@ -5,6 +5,8 @@
     align-items: center;
     justify-content: center;
     gap: 64px;
+    max-width: 420px;
+    margin: 0 auto;
 }
 
 .emoticonWrapper {

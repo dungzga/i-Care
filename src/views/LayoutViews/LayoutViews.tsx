@@ -1,6 +1,6 @@
 "use client"
 
-import { CSSProperties, FC, HTMLAttributes } from "react"
+import { CSSProperties, FC, HTMLAttributes, useEffect, useState } from "react"
 import styles from "./LayoutViews.module.css"
 
 interface TLayoutInterface extends HTMLAttributes<HTMLDivElement> {
@@ -9,9 +9,14 @@ interface TLayoutInterface extends HTMLAttributes<HTMLDivElement> {
 
 export const LayoutViews: FC<TLayoutInterface> = (props) => {
     const { customStyled, children } = props
+    const [hydrated, setHydrated] = useState(false);
+        useEffect(() => {
+            setHydrated(true);
+        },[])
+        
     return (
         <div className={styles.container} style={customStyled}>
-            {children}
+            {hydrated && children}
         </div>
     )
 }
